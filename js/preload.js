@@ -14,7 +14,7 @@ Game.Preload.prototype = {
                     this.load.image('gameOverImg', 'assets/gameover.png');
                     this.load.image('logo', 'assets/logo.png');
 
-                    this.load.spritesheet('healthBar', 'assets/health.png', 100, 34, 7);
+//                    this.load.spritesheet('healthBar', 'assets/health.png', 100, 34, 7);
                     this.load.image('menu_bg', 'assets/menu_bg.png');
                     this.load.image('gameover_bg', 'assets/gameover_bg.png');
 

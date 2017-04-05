@@ -1,14 +1,15 @@
 Game.singlePlayer = function(singleplayer) {
 
+
 this.map;
 this.tileset;
-this.layer;
 this.bg;
 this.layer;
 this.player;
 this.facing = 'left';
 this.jumpTimer = 0;
 this.cursors;
+
 };
 
 Game.singlePlayer.prototype = {
@@ -24,6 +25,7 @@ Game.singlePlayer.prototype = {
         this.layer = this.map.createLayer('Tile Layer 1');
         this.layer.debug = true;
         this.layer.resizeWorld();
+
         this.bg = this.add.tileSprite(0, 0, 800, 600, 'background');
         this.bg.fixedToCamera = true;
 
