@@ -9,6 +9,8 @@ this.player;
 this.facing = 'left';
 this.jumpTimer = 0;
 this.cursors;
+this.starsSmall;
+this.starsBig;
 
 };
 
@@ -18,6 +20,9 @@ Game.singlePlayer.prototype = {
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.physics.arcade.gravity.y = 250;
 
+        this.bg = this.add.tileSprite(0, 0, 800, 600, 'background');
+        this.bg.fixedToCamera = true;
+
         this.game.stage.backgroundColor = '#000000';
         this.map = this.add.tilemap('level1');
         this.map.addTilesetImage('tiles-1');
@@ -25,9 +30,6 @@ Game.singlePlayer.prototype = {
         this.layer = this.map.createLayer('Tile Layer 1');
         this.layer.debug = true;
         this.layer.resizeWorld();
-
-        this.bg = this.add.tileSprite(0, 0, 800, 600, 'background');
-        this.bg.fixedToCamera = true;
 
         this.player = game.add.sprite(32, 32, 'dude');
         this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
@@ -39,17 +41,41 @@ Game.singlePlayer.prototype = {
         this.player.animations.add('left', [0, 1, 2, 3], 10, true);
         this.player.animations.add('turn', [4], 20, true);
         this.player.animations.add('right', [5, 6, 7, 8], 10, true);
-
         this.game.camera.follow(this.player);
-
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+        this.starsSmall = this.add.group();
+        this.starsSmall.enableBody = true;
+        this.map.createFromObjects('Object Layer 1', 1, 'starSmall', 0, true, false, this.starsSmall);
+/*
+        //  Here we'll create 12 of them evenly spaced apart
+        for (var i = 0; i < 12; i++)
+        {
+        //  Create a star inside of the 'stars' group
+        var star = this.starsSmall.create(i * 70, 0, 'starSmall');
+        }
+*/
+        this.starsBig = this.add.group();
+        this.starsBig.enableBody = true;
+        this.map.createFromObjects('Object Layer 1', 2, 'starBig', 0, true, false, this.starsBig);
+/*
+        //  Here we'll create 12 of them evenly spaced apart
+        for (var i = 0; i < 12; i++)
+        {
+        //  Create a star inside of the 'stars' group
+        var star = this.starsBig.create(i * 70, 0, 'starBig');
+*/
 },
 
 
 
     update: function(){
         game.physics.arcade.collide(this.player, this.layer);
+        game.physics.arcade.collide(this.starsSmall, this.layer);
+        game.physics.arcade.collide(this.starsBig, this.layer);
+        game.physics.arcade.overlap(this.player, this.starsSmall, this.collectStar, null, this);
+        game.physics.arcade.overlap(this.player, this.starsBig, this.collectStarTwo, null, this);
 
     this.player.body.velocity.x = 0;
 
@@ -97,6 +123,20 @@ Game.singlePlayer.prototype = {
         this.player.body.velocity.y = -250;
         this.jumpTimer = game.time.now + 750;
     }
+},
+
+    collectStar: function(player, starsSmall){
+
+    // Removes the star from the screen
+    starsSmall.kill();
+    console.log("Star Picked Up");
+},
+
+    collectStarTwo: function(player, starsBig){
+
+    // Removes the star from the screen
+    starsBig.kill();
+    console.log("Star Two Picked Up");
 }
 };
 
