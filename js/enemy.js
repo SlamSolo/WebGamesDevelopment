@@ -1,3 +1,5 @@
+/*
+
 Zombie = function (game, player) {
 
     var rndDirection = game.rnd.integerInRange(1, 4);
@@ -61,3 +63,5 @@ Zombie.prototype.update = function() {
     this.rotation = this.game.physics.arcade.angleBetween(this, this.player);
     game.physics.arcade.moveToObject(this, this.player, this.MOVE_SPEED);
 };
+
+*/

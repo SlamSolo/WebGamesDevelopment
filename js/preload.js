@@ -2,7 +2,7 @@ Game.Preload = function(game) {};
 
 Game.Preload.prototype = {
 
-        preload.function() {
+        preload: function() {
                     this.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
                     this.load.image('tiles-1', 'assets/tiles-1.png');
                     this.load.spritesheet('dude', 'assets/dude.png', 32, 48);

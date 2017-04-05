@@ -16,6 +16,6 @@ Game.Menu.prototype = {
 	},
 
     singlePlayer: function() {
-        this.state.start('singlePlayer');
+        this.state.start('singlePlayer', true, false, 'singlePlayer');
     },
 };

@@ -1,3 +1,5 @@
+/*
+
 // State variables
 Game.GameOver = function(game) {
     this.score;
@@ -33,3 +35,5 @@ Game.GameOver.prototype = {
         this.state.start('menu');
     }
 };
+
+*/

@@ -4,14 +4,31 @@
         <title>Draft 1 Game Page</title>
         <meta name="gamepage" content="Placeholder">
         <script src="js/phaser.min.js"></script>
+        <script src="js/boot.js"></script>
+        <script src="js/preload.js"></script>
+        <script src="js/menu.js"></script>
         <script src="js/script.js"></script>
-        <script src="js/starstruck.js"></script>
+        <script src="js/singlePlayer.js"></script>
+        <script src="js/enemy.js"></script>
+        <script src="js/gameOver.js"></script>
         <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
 <h1>This is a Heading</h1>
 <p>This is a paragraph.</p>
+
+        <script>
+			var game = new Phaser.Game(800, 600, Phaser.CANVAS, '');
+			// Adding States
+			game.state.add('boot', Game.Boot);
+			game.state.add('preload', Game.Preload);
+			game.state.add('menu', Game.Menu);
+			game.state.add('singlePlayer', Game.singlePlayer);
+			game.state.add('gameOver', Game.GameOver);
+			// Start boot state
+			game.state.start('boot');
+		</script>
 
          <footer>All Rights Reserved 2015. All assests from B00250411.</footer>
     </body>
