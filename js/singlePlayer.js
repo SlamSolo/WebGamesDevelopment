@@ -28,7 +28,7 @@ Game.singlePlayer.prototype = {
         this.bg.fixedToCamera = true;
 
         this.player = game.add.sprite(32, 32, 'dude');
-        this.game.physics.enable(player, Phaser.Physics.ARCADE);
+        this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
 
         this.player.body.bounce.y = 0.2;
         this.player.body.collideWorldBounds = true;
@@ -38,14 +38,63 @@ Game.singlePlayer.prototype = {
         this.player.animations.add('turn', [4], 20, true);
         this.player.animations.add('right', [5, 6, 7, 8], 10, true);
 
-        this.game.camera.follow(player);
+        this.game.camera.follow(this.player);
 
-        this.cursors = game.input.keyboard.createCursorKeys();
-        this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        this.cursors = this.game.input.keyboard.createCursorKeys();
+        this.jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+},
 
 
 
+    update: function(){
+        game.physics.arcade.collide(this.player, this.layer);
 
+    this.player.body.velocity.x = 0;
+
+    if (this.cursors.left.isDown)
+    {
+        this.player.body.velocity.x = -150;
+
+        if (this.facing != 'left')
+        {
+            this.player.animations.play('left');
+            this.facing = 'left';
+        }
+    }
+    else if (this.cursors.right.isDown)
+    {
+        this.player.body.velocity.x = 150;
+
+        if (this.facing != 'right')
+        {
+            this.player.animations.play('right');
+            this.facing = 'right';
+        }
+    }
+    else
+    {
+        if (this.facing != 'idle')
+        {
+            this.player.animations.stop();
+
+            if (this.facing == 'left')
+            {
+                this.player.frame = 0;
+            }
+            else
+            {
+                this.player.frame = 5;
+            }
+
+            this.facing = 'idle';
+        }
+    }
+
+    if (this.jumpButton.isDown && this.player.body.onFloor() && game.time.now > this.jumpTimer)
+    {
+        this.player.body.velocity.y = -250;
+        this.jumpTimer = game.time.now + 750;
+    }
 }
 };
 
