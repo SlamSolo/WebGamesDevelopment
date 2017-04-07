@@ -1,22 +1,25 @@
+<!-- The game page for this project -->
+
 <!DOCTYPE html>
 <html>
 <head>
-        <title>Draft 1 Game Page</title>
+        <title>Space War</title>
         <meta name="gamepage" content="Placeholder">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"></script>
+        <script src="js/badGuy.js"></script>
+        <script src="js/playerCharacter.js"></script>
         <script src="js/boot.js"></script>
         <script src="js/preload.js"></script>
         <script src="js/menu.js"></script>
-        <script src="js/script.js"></script>
         <script src="js/singlePlayer.js"></script>
-        <script src="js/enemy.js"></script>
         <script src="js/gameOver.js"></script>
+		<script src="js/states/leaderboard.js"></script>
         <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+<h1>Space War</h1>
 
         <script>
 			var game = new Phaser.Game(800, 600, Phaser.CANVAS, '');
@@ -30,6 +33,18 @@
 			game.state.start('boot');
 		</script>
 
-         <footer>All Rights Reserved 2015. All assests from B00250411.</footer>
+        <h3>Controls</h3>
+        <ul>
+            <li><a href="documentation.html">Controls</a></li>
+        </ul>
+
+        <h3>Home</h3>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+
+         <footer>B00250411 and B00257340</footer>
     </body>
 </html>
+
+<!-- Created by B00250411 and B00257340 -->

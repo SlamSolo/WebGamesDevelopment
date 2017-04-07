@@ -1,10 +1,10 @@
-// Create game object
+// Creation of the Game Object
 Game = {};
 
-// State variables
+// The Variables for this State
 Game.Boot = function(game) {};
 
-// State functions
+// The Functions for this State
 Game.Boot.prototype = {
 	create: function() {
 		this.state.start('preload');
